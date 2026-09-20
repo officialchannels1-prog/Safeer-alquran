@@ -2,48 +2,453 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>مسابقة سفير القرآن</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #071b16;
-      color: white;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f4f7f5;
+      color: #17251d;
+    }
+
+    .container {
+      width: min(92%, 700px);
+      margin: 40px auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      color: #657269;
+      line-height: 1.8;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d7ded9;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #2d7651;
+    }
+
+    .branches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .branch {
+      border: 1px solid #d7ded9;
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
       text-align: center;
     }
 
-    .box {
-      padding: 40px;
+    .branch input {
+      width: auto;
+      margin-left: 7px;
     }
 
-    h1 {
-      font-size: 32px;
+    .licenses {
+      border: 1px solid #e0e5e2;
+      border-radius: 14px;
+      padding: 15px;
     }
 
-    p {
-      opacity: .8;
+    .license {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+    }
+
+    .license input {
+      width: 20px;
+      height: 20px;
+    }
+
+    .age-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .age-value {
+      min-width: 70px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .audio-box {
+      border: 1px dashed #b8c7be;
+      border-radius: 14px;
+      padding: 18px;
+      background: #fafcfb;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #236342;
+      color: white;
+    }
+
+    button:hover {
+      background: #1b5135;
+    }
+
+    .required {
+      color: #c62828;
+    }
+
+    .success {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #e8f5e9;
+      color: #216b36;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+        margin: 20px auto;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .branches {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
+<div class="container">
 
-    <div style="font-size:60px">🕌</div>
+  <div class="card">
 
-    <h1>مسابقة سفير القرآن</h1>
+    <div class="header">
+      <h1>مسابقة سفير القرآن</h1>
+      <p>
+        نموذج تسجيل الرغبة في المشاركة في مسابقة سفير القرآن
+      </p>
+    </div>
 
-    <p>جاري تجهيز استمارة المشاركة...</p>
+    <form id="registrationForm">
+
+      <!-- الاسم -->
+      <div class="field">
+        <label>
+          الاسم بالكامل <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="اكتب اسمك بالكامل"
+          required
+        >
+      </div>
+
+
+      <!-- الهاتف -->
+      <div class="field">
+        <label>
+          رقم الهاتف <span class="required">*</span>
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="01xxxxxxxxx"
+          required
+        >
+      </div>
+
+
+      <!-- المحافظة -->
+      <div class="field">
+        <label>
+          المحافظة <span class="required">*</span>
+        </label>
+
+        <select id="governorate" required>
+
+          <option value="">
+            اختر المحافظة
+          </option>
+
+          <option>القاهرة</option>
+          <option>الإسكندرية</option>
+          <option>الجيزة</option>
+          <option>القليوبية</option>
+          <option>الدقهلية</option>
+          <option>البحر الأحمر</option>
+          <option>البحيرة</option>
+          <option>الفيوم</option>
+          <option>الغربية</option>
+          <option>الإسماعيلية</option>
+          <option>المنوفية</option>
+          <option>المنيا</option>
+          <option>القليوبية</option>
+          <option>الوادي الجديد</option>
+          <option>السويس</option>
+          <option>اسوان</option>
+          <option>أسيوط</option>
+          <option>بني سويف</option>
+          <option>بورسعيد</option>
+          <option>دمياط</option>
+          <option>سوهاج</option>
+          <option>شمال سيناء</option>
+          <option>قنا</option>
+          <option>كفر الشيخ</option>
+          <option>مطروح</option>
+          <option>الأقصر</option>
+          <option>جنوب سيناء</option>
+
+        </select>
+      </div>
+
+
+      <!-- السن -->
+      <div class="field">
+
+        <label>
+          السن <span class="required">*</span>
+        </label>
+
+        <div class="age-row">
+
+          <input
+            type="range"
+            id="age"
+            min="5"
+            max="80"
+            value="18"
+          >
+
+          <div class="age-value">
+            <span id="ageValue">18</span>
+            سنة
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- الفرع -->
+      <div class="field">
+
+        <label>
+          فرع المسابقة <span class="required">*</span>
+        </label>
+
+        <div class="branches">
+
+          <label class="branch">
+            <input
+              type="radio"
+              name="branch"
+              value="تجويد"
+              required
+            >
+            تجويد
+          </label>
+
+          <label class="branch">
+            <input
+              type="radio"
+              name="branch"
+              value="ترتيل"
+            >
+            ترتيل
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- الإجازات -->
+      <div class="field">
+
+        <label>
+          الإجازات إن وجدت
+        </label>
+
+        <div class="licenses">
+
+          <label class="license">
+            <input
+              type="checkbox"
+              value="إجازة في القرآن الكريم"
+            >
+            إجازة في القرآن الكريم
+          </label>
+
+          <label class="license">
+            <input
+              type="checkbox"
+              value="إجازة برواية حفص"
+            >
+            إجازة برواية حفص
+          </label>
+
+          <label class="license">
+            <input
+              type="checkbox"
+              value="إجازة برواية ورش"
+            >
+            إجازة برواية ورش
+          </label>
+
+          <label class="license">
+            <input
+              type="checkbox"
+              value="إجازة في القراءات"
+            >
+            إجازة في القراءات
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- عينة صوتية -->
+      <div class="field">
+
+        <label>
+          عينة صوتية
+        </label>
+
+        <div class="audio-box">
+
+          <p>
+            يمكنك إرفاق عينة من تلاوتك للتقييم المبدئي.
+          </p>
+
+          <input
+            type="file"
+            id="audio"
+            accept="audio/*"
+          >
+
+        </div>
+
+      </div>
+
+
+      <button type="submit">
+        إرسال طلب المشاركة
+      </button>
+
+      <div
+        class="success"
+        id="successMessage"
+      >
+        تم تسجيل طلبك بنجاح.
+      </div>
+
+    </form>
 
   </div>
+
+</div>
+
+
+<script>
+
+  // تحديث السن
+  const age = document.getElementById("age");
+  const ageValue = document.getElementById("ageValue");
+
+  age.addEventListener("input", function () {
+    ageValue.textContent = this.value;
+  });
+
+
+  // إرسال النموذج
+  document
+    .getElementById("registrationForm")
+    .addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const success =
+        document.getElementById("successMessage");
+
+      success.style.display = "block";
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+
+    });
+
+</script>
 
 </body>
 </html>
