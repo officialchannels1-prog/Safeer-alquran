@@ -226,23 +226,27 @@ export default {
         await turnstileResponse.json();
 
 
-        if (
-          !turnstileResult.success
-        ) {
+        if (!turnstileResult.success) {
 
-          return Response.json(
-            {
-              success:false,
-              message:
-              "فشل التحقق الأمني. من فضلك حاول مرة أخرى."
-            },
-            {
-              status:403
-            }
-          );
+  console.error(
+    "TURNSTILE ERROR:",
+    turnstileResult["error-codes"]
+  );
 
-        }
+  return Response.json(
+    {
+      success:false,
+      message:
+        "فشل التحقق الأمني.",
+      turnstileErrors:
+        turnstileResult["error-codes"] || []
+    },
+    {
+      status:403
+    }
+  );
 
+}
 
         // =========================
         // منع التسجيل المكرر
