@@ -3,59 +3,316 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>مسابقة سفير القرآن</title>
+
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer>
+</script>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f3f7f4;color:#17251d}
-.container{max-width:700px;margin:30px auto;padding:15px}
-.card{background:#fff;border-radius:20px;padding:25px;box-shadow:0 8px 30px #0001}
-h1{text-align:center;margin:5px 0 10px}
-.subtitle{text-align:center;color:#68756d;margin-bottom:30px}
-.field{margin-bottom:20px}
-label.title{display:block;font-weight:bold;margin-bottom:8px}
-input[type=text],input[type=tel],select{width:100%;padding:14px;border:1px solid #d5ddd8;border-radius:12px;font-size:16px;background:#fff}
-.age{display:flex;align-items:center;gap:15px}
-.age input{flex:1}
-.age-value{font-size:20px;font-weight:bold;min-width:70px;text-align:center}
-.branches{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.branch{border:1px solid #d5ddd8;border-radius:12px;padding:14px;text-align:center;cursor:pointer}
-.branch input{margin-left:6px}
-.licenses{border:1px solid #e0e6e2;border-radius:12px;padding:10px}
-.license{display:block;padding:9px}
-.license input{width:18px;height:18px;vertical-align:middle}
-.audio{border:1px dashed #b8c6bd;border-radius:12px;padding:15px;background:#fafcfb}
-button{width:100%;padding:16px;border:0;border-radius:12px;background:#236342;color:white;font-size:18px;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.6}
-.message{display:none;text-align:center;margin-top:15px;padding:14px;border-radius:12px}
-.success{background:#e8f5e9;color:#216b36}
-.error{background:#ffebee;color:#b71c1c}
-@media(max-width:600px){.branches{grid-template-columns:1fr}.card{padding:20px}}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Tahoma,sans-serif;
+  background:#f3f7f4;
+  color:#17251d;
+}
+
+.container{
+  max-width:700px;
+  margin:30px auto;
+  padding:15px;
+}
+
+.card{
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 8px 30px #0001;
+}
+
+h1{
+  text-align:center;
+  margin:5px 0 10px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#68756d;
+  margin-bottom:30px;
+}
+
+.field{
+  margin-bottom:20px;
+}
+
+label.title{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+input[type=text],
+input[type=tel],
+select{
+  width:100%;
+  padding:14px;
+  border:1px solid #d5ddd8;
+  border-radius:12px;
+  font-size:16px;
+  background:#fff;
+}
+
+.age{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.age input{
+  flex:1;
+}
+
+.age-value{
+  font-size:20px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+}
+
+.branches{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.branch{
+  border:1px solid #d5ddd8;
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.branch input{
+  margin-left:6px;
+}
+
+.licenses{
+  border:1px solid #e0e6e2;
+  border-radius:12px;
+  padding:10px;
+}
+
+.license{
+  display:block;
+  padding:9px;
+}
+
+.license input{
+  width:18px;
+  height:18px;
+  vertical-align:middle;
+}
+
+.audio{
+  border:1px dashed #b8c6bd;
+  border-radius:12px;
+  padding:15px;
+  background:#fafcfb;
+}
+
+.turnstile-box{
+  margin:20px 0;
+  display:flex;
+  justify-content:center;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  background:#236342;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+}
+
+.message{
+  display:none;
+  text-align:center;
+  margin-top:15px;
+  padding:14px;
+  border-radius:12px;
+}
+
+.success{
+  background:#e8f5e9;
+  color:#216b36;
+}
+
+.error{
+  background:#ffebee;
+  color:#b71c1c;
+}
+
+/* صفحة النجاح */
+
+.success-page{
+  display:none;
+  text-align:center;
+}
+
+.success-icon{
+  font-size:60px;
+  margin-bottom:10px;
+}
+
+.registration-title{
+  color:#68756d;
+  margin-top:20px;
+}
+
+.registration-number{
+  background:#f3f7f4;
+  border:2px dashed #236342;
+  color:#236342;
+  font-size:28px;
+  font-weight:bold;
+  padding:18px 10px;
+  border-radius:15px;
+  margin:15px 0;
+  direction:ltr;
+  letter-spacing:1px;
+}
+
+.success-note{
+  color:#555;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+.whatsapp-button{
+  display:block;
+  width:100%;
+  padding:16px;
+  border-radius:12px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+  margin-top:12px;
+}
+
+.new-registration{
+  background:#236342;
+  color:white;
+  margin-top:12px;
+}
+
+@media(max-width:600px){
+
+  .branches{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .registration-number{
+    font-size:23px;
+  }
+}
+
+/* حقل مخفي ضد البوتات */
+
+.hp{
+  position:absolute !important;
+  left:-9999px !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
+
 <div class="card">
 
+<!-- النموذج -->
+
+<div id="formSection">
+
 <h1>مسابقة سفير القرآن</h1>
-<div class="subtitle">نموذج طلب الرغبة في المشاركة</div>
+
+<div class="subtitle">
+نموذج طلب الرغبة في المشاركة
+</div>
 
 <form id="form">
 
 <div class="field">
-<label class="title">الاسم بالكامل *</label>
-<input id="name" type="text" required placeholder="اكتب اسمك بالكامل">
+
+<label class="title">
+الاسم بالكامل *
+</label>
+
+<input
+  id="name"
+  type="text"
+  required
+  placeholder="اكتب اسمك بالكامل"
+>
+
 </div>
 
-<div class="field">
-<label class="title">رقم الهاتف *</label>
-<input id="phone" type="tel" required placeholder="01xxxxxxxxx">
-</div>
 
 <div class="field">
-<label class="title">المحافظة *</label>
+
+<label class="title">
+رقم الهاتف *
+</label>
+
+<input
+  id="phone"
+  type="tel"
+  required
+  inputmode="numeric"
+  placeholder="01xxxxxxxxx"
+>
+
+</div>
+
+
+<div class="field">
+
+<label class="title">
+المحافظة *
+</label>
+
 <select id="governorate" required>
-<option value="">اختر المحافظة</option>
+
+<option value="">
+اختر المحافظة
+</option>
+
 <option>القاهرة</option>
 <option>الإسكندرية</option>
 <option>الجيزة</option>
@@ -82,160 +339,535 @@ button:disabled{opacity:.6}
 <option>مطروح</option>
 <option>الأقصر</option>
 <option>جنوب سيناء</option>
+
 </select>
+
 </div>
 
+
 <div class="field">
-<label class="title">السن *</label>
+
+<label class="title">
+السن *
+</label>
+
 <div class="age">
-<input id="age" type="range" min="5" max="80" value="18">
-<div class="age-value"><span id="ageValue">18</span> سنة</div>
-</div>
+
+<input
+  id="age"
+  type="range"
+  min="5"
+  max="80"
+  value="18"
+>
+
+<div class="age-value">
+<span id="ageValue">18</span> سنة
 </div>
 
+</div>
+
+</div>
+
+
 <div class="field">
-<label class="title">فرع المسابقة *</label>
+
+<label class="title">
+فرع المسابقة *
+</label>
+
 <div class="branches">
+
 <label class="branch">
-<input type="radio" name="branch" value="تجويد" required> تجويد
+
+<input
+  type="radio"
+  name="branch"
+  value="تجويد"
+  required
+>
+
+تجويد
+
 </label>
+
+
 <label class="branch">
-<input type="radio" name="branch" value="ترتيل"> ترتيل
+
+<input
+  type="radio"
+  name="branch"
+  value="ترتيل"
+>
+
+ترتيل
+
 </label>
-</div>
+
 </div>
 
+</div>
+
+
 <div class="field">
-<label class="title">الإجازات إن وجدت</label>
+
+<label class="title">
+الإجازات إن وجدت
+</label>
+
 <div class="licenses">
 
 <label class="license">
-<input type="checkbox" value="لم أحصل على إجازات"> لم أحصل على إجازات
+
+<input
+  type="checkbox"
+  value="لا يوجد"
+>
+
+لا يوجد
+
 </label>
 
-<label class="license">
-<input type="checkbox" value="إجازة برواية حفص"> إجازة برواية حفص
-</label>
 
 <label class="license">
-<input type="checkbox" value="إجازة برواية ورش"> إجازة برواية ورش
+
+<input
+  type="checkbox"
+  value="إجازة برواية حفص"
+>
+
+إجازة برواية حفص
+
 </label>
 
+
 <label class="license">
-<input type="checkbox" value="إجازة في القراءات"> إجازة في القراءات
+
+<input
+  type="checkbox"
+  value="إجازة برواية ورش"
+>
+
+إجازة برواية ورش
+
+</label>
+
+
+<label class="license">
+
+<input
+  type="checkbox"
+  value="إجازة في القراءات"
+>
+
+إجازة في القراءات
+
 </label>
 
 </div>
+
 </div>
+
 
 <div class="field">
-<label class="title">عينة صوتية بصوتك</label>
+
+<label class="title">
+عينة صوتية بصوتك
+</label>
+
 <div class="audio">
-<input id="audio" type="file" accept="audio/*">
-</div>
+
+<input
+  id="audio"
+  type="file"
+  accept="audio/*"
+>
+
 </div>
 
-<button id="submitBtn" type="submit">إرسال طلب المشاركة</button>
-
-<div id="success" class="message success">
-تم تسجيل طلبك بنجاح.
 </div>
 
-<div id="error" class="message error"></div>
+
+<!-- حماية البوتات -->
+
+<div class="hp">
+
+<label>
+لا تملأ هذا الحقل
+</label>
+
+<input
+  type="text"
+  id="website"
+  autocomplete="off"
+  tabindex="-1"
+>
+
+</div>
+
+
+<!-- Turnstile -->
+
+<div class="turnstile-box">
+
+<div
+  class="cf-turnstile"
+  data-sitekey="0x4AAAAAAE_SJDFAX6SQMvM5"
+  data-theme="light">
+</div>
+
+</div>
+
+
+<button
+  id="submitBtn"
+  type="submit"
+>
+إرسال طلب المشاركة
+</button>
+
+
+<div
+  id="error"
+  class="message error">
+</div>
 
 </form>
-</div>
+
 </div>
 
+
+<!-- صفحة النجاح -->
+
+<div
+  id="successPage"
+  class="success-page"
+>
+
+<div class="success-icon">
+🎉
+</div>
+
+<h1>
+تم تسجيل طلبك بنجاح
+</h1>
+
+<p class="success-note">
+شكرًا لرغبتك في المشاركة في مسابقة سفير القرآن.
+<br>
+احتفظ برقم التسجيل الخاص بك لمتابعة طلبك.
+</p>
+
+<div class="registration-title">
+رقم التسجيل الخاص بك
+</div>
+
+<div
+  id="registrationNumber"
+  class="registration-number">
+</div>
+
+<a
+  id="whatsappButton"
+  class="whatsapp-button"
+  href="#"
+  target="_blank"
+  rel="noopener"
+>
+📱 تأكيد التسجيل عبر واتساب
+</a>
+
+<button
+  type="button"
+  class="new-registration"
+  onclick="location.reload()"
+>
+تسجيل متسابق آخر
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- صوت الآية -->
+
+<audio
+  id="ayahAudio"
+  src="/ayah.mp3"
+  preload="auto"
+  playsinline>
+</audio>
+
+
 <script>
-const age=document.getElementById("age");
-const ageValue=document.getElementById("ageValue");
+
+const age =
+document.getElementById("age");
+
+const ageValue =
+document.getElementById("ageValue");
+
 
 age.addEventListener("input",()=>{
-  ageValue.textContent=age.value;
+
+  ageValue.textContent =
+  age.value;
+
 });
 
-document.getElementById("form").addEventListener("submit",async(e)=>{
+
+document
+.getElementById("form")
+.addEventListener("submit",async(e)=>{
+
   e.preventDefault();
 
-  const phone=document.getElementById("phone").value.trim();
+
+  const phone =
+  document.getElementById("phone")
+  .value
+  .trim();
+
 
   if(!/^01[0125][0-9]{8}$/.test(phone)){
-    showError("من فضلك أدخل رقم هاتف مصري صحيح.");
+
+    showError(
+      "من فضلك أدخل رقم هاتف مصري صحيح."
+    );
+
     return;
+
   }
 
-  const branch=document.querySelector('input[name="branch"]:checked');
+
+  const branch =
+  document.querySelector(
+    'input[name="branch"]:checked'
+  );
+
 
   if(!branch){
-    showError("من فضلك اختر فرع المسابقة.");
+
+    showError(
+      "من فضلك اختر فرع المسابقة."
+    );
+
     return;
+
   }
+
+
+  const turnstileToken =
+  document.querySelector(
+    '[name="cf-turnstile-response"]'
+  )?.value;
+
+
+  if(!turnstileToken){
+
+    showError(
+      "من فضلك أكمل التحقق الأمني أولًا."
+    );
+
+    return;
+
+  }
+
 
   const licenses=[
-    ...document.querySelectorAll('.license input:checked')
+
+    ...document.querySelectorAll(
+      '.license input:checked'
+    )
+
   ].map(x=>x.value);
 
+
   const data={
-    name:document.getElementById("name").value.trim(),
+
+    name:
+    document.getElementById("name")
+    .value
+    .trim(),
+
     phone,
-    governorate:document.getElementById("governorate").value,
-    age:Number(age.value),
-    branch:branch.value,
-    licenses
+
+    governorate:
+    document.getElementById("governorate")
+    .value,
+
+    age:
+    Number(age.value),
+
+    branch:
+    branch.value,
+
+    licenses,
+
+    website:
+    document.getElementById("website")
+    .value,
+
+    turnstileToken
+
   };
 
-  const btn=document.getElementById("submitBtn");
+
+  const btn =
+  document.getElementById("submitBtn");
+
+
   btn.disabled=true;
-  btn.textContent="جارٍ إرسال الطلب...";
+
+  btn.textContent =
+  "جارٍ إرسال الطلب...";
+
 
   try{
-    const response=await fetch("/api/apply",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(data)
-    });
 
-    const result=await response.json();
+    const response =
+    await fetch(
+      "/api/apply",
+      {
+        method:"POST",
 
-    if(!response.ok || !result.success){
-      throw new Error(result.message||"حدث خطأ أثناء التسجيل");
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:
+        JSON.stringify(data)
+      }
+    );
+
+
+    const result =
+    await response.json();
+
+
+    if(
+      !response.ok ||
+      !result.success
+    ){
+
+      throw new Error(
+        result.message ||
+        "حدث خطأ أثناء التسجيل"
+      );
+
     }
 
-    document.getElementById("success").style.display="block";
-    document.getElementById("error").style.display="none";
-    document.getElementById("form").reset();
-    age.value=18;
-    ageValue.textContent="18";
+
+    document
+    .getElementById("formSection")
+    .style.display="none";
+
+
+    document
+    .getElementById("successPage")
+    .style.display="block";
+
+
+    document
+    .getElementById("registrationNumber")
+    .textContent =
+    result.registrationNumber;
+
+
+    const whatsappMessage =
+    `السلام عليكم، تم التسجيل في مسابقة سفير القرآن.
+
+الاسم: ${data.name}
+
+رقم التسجيل: ${result.registrationNumber}`;
+
+
+    const whatsappURL =
+    "https://wa.me/201001023146?text=" +
+    encodeURIComponent(
+      whatsappMessage
+    );
+
+
+    document
+    .getElementById("whatsappButton")
+    .href =
+    whatsappURL;
+
 
   }catch(err){
-    showError(err.message);
+
+    showError(
+      err.message
+    );
+
+    btn.disabled=false;
+
+    btn.textContent =
+    "إرسال طلب المشاركة";
+
   }
 
-  btn.disabled=false;
-  btn.textContent="إرسال طلب المشاركة";
 });
 
+
 function showError(message){
-  const error=document.getElementById("error");
-  error.textContent=message;
-  error.style.display="block";
-  document.getElementById("success").style.display="none";
+
+  const error =
+  document.getElementById("error");
+
+  error.textContent =
+  message;
+
+  error.style.display =
+  "block";
+
 }
+
+
 </script>
-<audio id="ayahAudio" src="/ayah.mp3" preload="auto" playsinline></audio>
+
+
+<!-- تشغيل الآية -->
 
 <script>
-const audio = document.getElementById("ayahAudio");
 
-function playAyah() {
-  audio.play().catch(() => {});
+const ayahAudio =
+document.getElementById(
+  "ayahAudio"
+);
+
+
+function playAyah(){
+
+  ayahAudio
+  .play()
+  .catch(()=>{});
+
 }
+
 
 playAyah();
 
-document.addEventListener("click", playAyah, { once: true });
-document.addEventListener("touchstart", playAyah, { once: true });
+
+document.addEventListener(
+  "click",
+  playAyah,
+  {once:true}
+);
+
+
+document.addEventListener(
+  "touchstart",
+  playAyah,
+  {once:true}
+);
+
 </script>
+
 </body>
 </html>
