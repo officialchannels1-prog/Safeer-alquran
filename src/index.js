@@ -228,26 +228,29 @@ export default {
 
         if (!turnstileResult.success) {
 
+  const errors =
+    turnstileResult["error-codes"] || [];
+
   console.error(
     "TURNSTILE ERROR:",
-    turnstileResult["error-codes"]
+    JSON.stringify(errors)
   );
 
   return Response.json(
     {
-      success:false,
+      success: false,
       message:
-        "فشل التحقق الأمني.",
-      turnstileErrors:
-        turnstileResult["error-codes"] || []
+        "فشل التحقق الأمني: " +
+        (errors.length
+          ? errors.join(", ")
+          : "لم يتم استلام سبب الخطأ من Cloudflare")
     },
     {
-      status:403
+      status: 403
     }
   );
 
 }
-
         // =========================
         // منع التسجيل المكرر
         // =========================
