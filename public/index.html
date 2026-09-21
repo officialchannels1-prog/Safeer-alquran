@@ -223,6 +223,19 @@ function showError(message){
   document.getElementById("success").style.display="none";
 }
 </script>
+<audio id="ayahAudio" src="/ayah.mp3" preload="auto" playsinline></audio>
 
+<script>
+const audio = document.getElementById("ayahAudio");
+
+function playAyah() {
+  audio.play().catch(() => {});
+}
+
+playAyah();
+
+document.addEventListener("click", playAyah, { once: true });
+document.addEventListener("touchstart", playAyah, { once: true });
+</script>
 </body>
 </html>
